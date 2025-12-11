@@ -3,17 +3,17 @@ package club.doki7.pl6.dbj;
 import org.jetbrains.annotations.NotNull;
 
 public sealed interface DTerm {
-    record DVar(@NotNull String name, int index) implements DTerm {
+    record DVar(int index) implements DTerm {
         @Override
         public @NotNull String toString() {
-            return name + index;
+            return Integer.toString(index);
         }
     }
 
-    record DAbs(@NotNull DVar param, @NotNull DTerm body) implements DTerm {
+    record DAbs(@NotNull DTerm body) implements DTerm {
         @Override
         public @NotNull String toString() {
-            return "λ" + param + "." + body;
+            return "λ." + body;
         }
     }
 
