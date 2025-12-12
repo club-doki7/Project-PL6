@@ -6,27 +6,14 @@ import org.junit.jupiter.api.Test;
 public class TestEvalNaive {
     @Test
     public void testEval() {
-        Term and = new Term.Abs("p", new Term.Abs("q",
+        Term two = new Term.App(
+                Term.SUCC,
                 new Term.App(
-                        new Term.App(
-                                new Term.App(
-                                        Term.IF,
-                                        new Term.Var("p")
-                                ),
-                                new Term.Var("q")
-                        ),
-                        Term.FALSE
+                        Term.SUCC,
+                        Term.ZERO
                 )
-        ));
-
-        Term andTrueFalse = new Term.App(
-                new Term.App(
-                        and,
-                        Term.TRUE
-                ),
-                Term.FALSE
         );
 
-        System.out.println(andTrueFalse);
+        System.out.println(two);
     }
 }
