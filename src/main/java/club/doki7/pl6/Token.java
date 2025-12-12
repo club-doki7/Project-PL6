@@ -77,7 +77,7 @@ public sealed interface Token {
                 }
                 tokens.add(new RParen(line, col));
                 col++;
-            } else if (c == 'λ') {
+            } else if (c == 'λ' || c == '\\') {
                 if (!currentToken.isEmpty()) {
                     tokens.add(new Ident(currentToken.toString(), line, col - currentToken.length()));
                     currentToken.setLength(0);

@@ -20,13 +20,20 @@ public sealed interface Term {
     record App(@NotNull Term f, @NotNull Term arg) implements Term {
         @Override
         public @NotNull String toString() {
-            if (f instanceof Abs) {
-                return "(" + f + ") " + arg;
-            } else if (arg instanceof App || arg instanceof Abs) {
-                return f + " (" + arg + ")";
+            StringBuilder sb = new StringBuilder();
+            if (!(f instanceof Var)) {
+                sb.append("(").append(f).append(")");
             } else {
-                return f + " " + arg;
+                sb.append(f);
             }
+            sb.append(" ");
+            if (!(arg instanceof Var)) {
+                sb.append("(").append(arg).append(")");
+            } else {
+                sb.append(arg);
+            }
+
+            return sb.toString();
         }
     }
 
